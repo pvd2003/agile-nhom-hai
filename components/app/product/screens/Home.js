@@ -9,6 +9,7 @@ const data = [
     { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
     { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
     { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
+    { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
 ];
 
 const Home = () => {
