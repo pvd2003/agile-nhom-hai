@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image,Button, Pressable , ScrollView } from 'react-native'
 import React from 'react'
-
+ // Hoang My ne ahii
 const Detail = () => {
   return (
     <ScrollView style={styles.container}>
