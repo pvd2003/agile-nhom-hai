@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable, FlatList , ScrollView} from '
 import React from 'react'
 
 //data 
+// hoang my dang test github
 const data = [
     { id: '1', name: 'Black Simple Lamp', price: '$ 12.00', image: require('../../../../media/images/image1.png'), },
     { id: '2', name: 'Minimal Stand', price: '$ 25.00', image: require('../../../../media/images/image2.png'), },
