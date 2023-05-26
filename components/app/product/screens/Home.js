@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable, FlatList} from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, FlatList , ScrollView} from 'react-native'
 import React from 'react'
 
 //data 
@@ -6,6 +6,8 @@ const data = [
     { id: '1', name: 'Black Simple Lamp', price: '$ 12.00', image: require('../../../../media/images/image1.png'), },
     { id: '2', name: 'Minimal Stand', price: '$ 25.00', image: require('../../../../media/images/image2.png'), },
     { id: '3', name: 'Coffee Chair', price: '$ 20.00', image: require('../../../../media/images/image3.png'), },
+    { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
+    { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
     { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
 ];
 
