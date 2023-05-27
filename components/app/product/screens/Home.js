@@ -91,10 +91,7 @@ const Home = () => {
                     keyExtractor={item => item.id}
                     numColumns={2}
                 />
-
             </View>
-
-
         </View>
     )
 }
@@ -141,7 +138,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         alignItems: 'center',
         backgroundColor: '#303030',
-        flexDirection: 'row',
         justifyContent: 'center',
     },
     function: {
@@ -150,7 +146,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         alignItems: 'center',
         backgroundColor: '#F5F5F5',
-        flexDirection: 'row',
         justifyContent: 'center',
     },
     functionTextChoose: {
@@ -176,6 +171,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 36,
+        flex : 1
     },
 
     //Style Flatlist
