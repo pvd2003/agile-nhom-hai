@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable, FlatList} from 'react-native'
 import React from 'react'
 
+//data 
 const data = [
     { id: '1', name: 'Black Simple Lamp', price: '$ 12.00', image: require('../../../../media/images/image1.png'), },
     { id: '2', name: 'Minimal Stand', price: '$ 25.00', image: require('../../../../media/images/image2.png'), },
