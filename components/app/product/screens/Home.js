@@ -90,6 +90,7 @@ const Home = () => {
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     numColumns={2}
+                    showsVerticalScrollIndicator={false}
                 />
             </View>
         </View>
@@ -167,8 +168,6 @@ const styles = StyleSheet.create({
     },
     //Style Body
     body: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 36,
         flex : 1
@@ -177,7 +176,7 @@ const styles = StyleSheet.create({
     //Style Flatlist
     item: {
         margin: 8,
-        alignItems: 'center'
+        padding: 5
     },
     image: {
         height: 200,
