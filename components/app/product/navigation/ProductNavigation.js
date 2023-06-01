@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from '../screens/Home';
+import Detail from '../screens/Detail';
 import Favorites from '../screens/Favorites';
 import Notification from '../screens/Notification';
 import Profile from '../screens/Profile';
@@ -8,9 +10,28 @@ import Profile from '../screens/Profile';
 import React from 'react'
 import { Image } from 'react-native'
 
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const ProductNavigation = () => {
+
+    const BottomTabs = () => (
+    <Tab.Navigator
+    screenOptions={({route}) => icon(route)}>
+        <Tab.Screen
+            name="Home"
+            component={Home} />
+        <Tab.Screen
+            name="Favorites"
+            component={Favorites} />
+        <Tab.Screen
+            name="Notification"
+            component={Notification} />
+        <Tab.Screen
+            name="Profile"
+            component={Profile} />
+    </Tab.Navigator>
+)
     
     const icon = (route) => {
         return {
@@ -57,21 +78,18 @@ const ProductNavigation = () => {
     }
 
   return (
-    <Tab.Navigator
-    screenOptions={({route}) => icon(route)}>
-        <Tab.Screen
-            name="Home"
-            component={Home} />
-        <Tab.Screen
-            name="Favorites"
-            component={Favorites} />
-        <Tab.Screen
-            name="Notification"
-            component={Notification} />
-        <Tab.Screen
-            name="Profile"
-            component={Profile} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+    <Stack.Screen
+      name="Home"
+      component={BottomTabs}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="Detail"
+      component={Detail}
+      options={{ headerShown: false }}
+    />
+  </Stack.Navigator>
   )
 }
 

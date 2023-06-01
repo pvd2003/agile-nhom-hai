@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, Image, Pressable, FlatList , ScrollView} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, Pressable, FlatList, TextInput, TouchableOpacity, Button } from 'react-native';
+
+import React, { useEffect, useState } from "react";
 
 //data
 const data = [
@@ -12,16 +13,34 @@ const data = [
     { id: '7', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
 ];
 
-const Home = () => {
+const Home = ({ navigation }) => {
+
+    const [isHidden, setIsHidden] = useState(false);
+    const [isIcon, setIsIcon] = useState('../../../../media/images/find.png');
+
+    function Show() {
+        if (isHidden) {
+            setIsIcon(require('../../../../media/images/image4.png'))
+            return false;
+        } else {
+            setIsIcon(require('../../../../media/images/image4.png'))
+            return true;
+        }
+    }
+
+
     const renderItem = ({ item }) => (
         <View style={styles.item}>
-            <Image
-                source={item.image}
-                style={styles.image} />
-            <View style={styles.context}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.price}>{item.price}</Text>
-            </View>
+            <Pressable
+                onPress={() => navigation.navigate('Detail', { item })}>
+                <Image
+                    source={item.image}
+                    style={styles.image} />
+                <View style={styles.context}>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.price}>{item.price}</Text>
+                </View>
+            </Pressable>
         </View>
     );
 
@@ -29,9 +48,12 @@ const Home = () => {
         <View style={styles.container}>
 
             <View style={styles.header}>
-                <Image
-                    source={require('../../../../media/images/find.png')}
-                />
+
+                <TouchableOpacity onPress={() => setIsHidden(Show)} >
+                    {isHidden && <Image source={require('../../../../media/images/Shape.png')} />}
+                    {!isHidden && <Image source={require('../../../../media/images/find.png')} />}
+                </TouchableOpacity>
+
                 <View style={styles.titleContainer}>
                     <Text style={styles.title0}>Make home</Text>
                     <Text style={styles.title1}>BEAUTIFUL</Text>
@@ -40,6 +62,17 @@ const Home = () => {
                     source={require('../../../../media/images/cart.png')}
                 />
             </View>
+
+            {isHidden && <View style={styles.inputWrapper}>
+                <TextInput
+                    style={styles.input}
+                    //onChangeText={(text) => setKeyword(text)}
+                    placeholder="Search . . ."
+                />
+                <TouchableOpacity style={styles.icon} onPress={() => onHandleSearch(keyword)}>
+                    <Image source={require('../../../../media/images/find.png')} />
+                </TouchableOpacity>
+            </View>}
 
             <View style={styles.nav}>
                 <Pressable>
@@ -170,7 +203,7 @@ const styles = StyleSheet.create({
     body: {
         alignItems: 'center',
         marginTop: 36,
-        flex : 1
+        flex: 1
     },
 
     //Style Flatlist
@@ -183,19 +216,41 @@ const styles = StyleSheet.create({
         width: 157,
         borderRadius: 10,
     },
-    context:{
+    context: {
         justifyContent: 'flex-start'
     },
-    name:{
+    name: {
         color: '#606060',
         fontSize: 14,
         fontWeight: '400',
         fontFamily: 'Nunito Sans',
     },
-    price:{
+    price: {
         color: '#303030',
         fontSize: 14,
         fontWeight: '700',
         fontFamily: 'Nunito Sans',
+    },
+    inputWrapper: {
+        display: "flex",
+        flexDirection: "row",
+        marginLeft: 5,
+        marginRight: 5,
+    },
+    input: {
+        height: 40,
+        borderRadius: 5,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+        paddingLeft: 16,
+        flex: 1,
+        borderColor: '#303030',
+        borderWidth: 1,
+        marginTop: 20,
+    },
+    icon: {
+        marginTop: 30,
+        marginStart: 320,
+        position: 'absolute',
     },
 })

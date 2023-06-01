@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, Image, Button, Pressable, ScrollView } from 'react-native'
 import React from 'react'
 
-const Detail = () => {
+const Detail = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Image style={styles.image} source={require('../../../../media/images/image2.png')} />
+          <Image style={styles.image} source={route.params.item.image} />
           <View style={styles.imgNavi}>
             <View style={styles.mot}></View>
             <View style={styles.hai}></View>
@@ -15,7 +15,11 @@ const Detail = () => {
 
           <View style={styles.function}>
             <View style={styles.back}>
-              <Image style={styles.icon} source={require('../../../../media/images/back.png')} />
+              <Pressable
+                onPress={() => navigation.navigate('Home')}>
+                <Image style={styles.icon} source={require('../../../../media/images/back.png')} />
+              </Pressable>
+              
             </View>
 
             <View style={styles.colorContainer}>
@@ -35,9 +39,9 @@ const Detail = () => {
         </View>{/* header */}
 
         <View style={styles.body}>
-          <Text style={styles.title}>Minimal Stand</Text>
+          <Text style={styles.title}>{route.params.item.name}</Text>
           <View style={styles.priceAndQuantityContainer}>
-            <Text style={styles.price}>$50</Text>
+            <Text style={styles.price}>{route.params.item.price}</Text>
 
             <View style={styles.quantity}>
               <View style={styles.afterCT}>
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
   },
   //Style header
   image: {
-    width: 323,
+    width: 353,
     height: 455,
     borderBottomLeftRadius: 50,
   },
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   function: {
-    width: '160%',
+    width: '172%',
     marginTop: 53,
     position: 'absolute',
     alignItems: 'center',
@@ -276,13 +280,13 @@ const styles = StyleSheet.create({
   },
   //Style Footer
   footer: {
-    margin: 20,
+    margin: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
   buttonSave: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderWidth: 1,
     backgroundColor: '#f0f0f0',
     alignItems: 'center',
@@ -294,8 +298,8 @@ const styles = StyleSheet.create({
     height: 20
   },
   buttonAdd: {
-    width: 250,
-    height: 60,
+    width: 280,
+    height: 50,
     backgroundColor: '#000',
     borderRadius: 8,
     justifyContent: 'center',
