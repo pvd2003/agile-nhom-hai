@@ -1,0 +1,139 @@
+[33mcommit e00c6f2995ee2e94ff2d14b861f279d0bcb69ae6[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: NguyenVanChuc09 <chucnguyen116@gmail.com>
+Date:   Thu Jun 1 18:43:17 2023 +0700
+
+    gan detail, tao o tim kiem
+
+[33mcommit 9c106189a28d4124f03454512b4fe1c72d939f6f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 22:01:53 2023 +0700
+
+    Update Home Front-End PVD
+
+[33mcommit 3f0eb0b19b1f6ab5457cb3c8c80add285697604b[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 21:44:42 2023 +0700
+
+    Update Detail Front-End lần cuối
+
+[33mcommit a537ee44b7faea789ace240355a27544c64a6772[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 18:58:54 2023 +0700
+
+    Sua lai detail 1
+
+[33mcommit 049ec379758492797a0549b19259c242ebdfcc4e[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 14:54:08 2023 +0700
+
+    CHinh sua
+
+[33mcommit edbdca27aa2690dbb0c482732320f9a845c99f57[m
+Author: HoangMylb <nguyenmylb85@gmail.com>
+Date:   Fri May 26 21:21:22 2023 +0700
+
+    Squashed commit of the following:
+    
+    commit c049d6dca4dfbd19d1ea72b238ad38b4aad53006
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 21:20:22 2023 +0700
+    
+        Update Home.js
+    
+    commit 85b9d5ceba998f560fad5015894c55faa0b26679
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 21:13:20 2023 +0700
+    
+        la Hoang My
+    
+    commit bc79751e27f8cc6549c4d06136235bd7369e57b3
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 21:01:58 2023 +0700
+    
+        Squashed commit of the following:
+    
+        commit e20bb96848b3ed797831ed4154937a775433fcfa
+        Author: HoangMylb <nguyenmylb85@gmail.com>
+        Date:   Fri May 26 20:38:58 2023 +0700
+    
+            A
+    
+    commit 4eb609c334fc1a5f9fdd98b0aca30b831b3bea7a
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 20:53:08 2023 +0700
+    
+        Detail
+    
+    commit 4b96700b42d600096efb56420e48e3a78947a8fc
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 20:45:55 2023 +0700
+    
+        A
+
+[33mcommit ace535cdefd82279e993d02a0a0689e583a05e9a[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 14:47:35 2023 +0700
+
+    Hello lai
+
+[33mcommit a92977f45ca13c262a2c28511041dd8f50d7d015[m
+Author: HoangMylb <nguyenmylb85@gmail.com>
+Date:   Fri May 26 21:15:22 2023 +0700
+
+    HiHi
+
+[33mcommit 28369c6e94b8fabdd29eec8a4a12d99d1004b16e[m
+Author: HoangMylb <nguyenmylb85@gmail.com>
+Date:   Fri May 26 21:05:42 2023 +0700
+
+    Update Home.js
+
+[33mcommit 6a1cf20cd7ffa7e5dc6b8ede4ba141f37814d82c[m
+Author: HoangMylb <nguyenmylb85@gmail.com>
+Date:   Fri May 26 21:03:42 2023 +0700
+
+    Squashed commit of the following:
+    
+    commit bc79751e27f8cc6549c4d06136235bd7369e57b3
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 21:01:58 2023 +0700
+    
+        Squashed commit of the following:
+    
+        commit e20bb96848b3ed797831ed4154937a775433fcfa
+        Author: HoangMylb <nguyenmylb85@gmail.com>
+        Date:   Fri May 26 20:38:58 2023 +0700
+    
+            A
+    
+    commit 4eb609c334fc1a5f9fdd98b0aca30b831b3bea7a
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 20:53:08 2023 +0700
+    
+        Detail
+    
+    commit 4b96700b42d600096efb56420e48e3a78947a8fc
+    Author: HoangMylb <nguyenmylb85@gmail.com>
+    Date:   Fri May 26 20:45:55 2023 +0700
+    
+        A
+
+[33mcommit e20bb96848b3ed797831ed4154937a775433fcfa[m
+Author: HoangMylb <nguyenmylb85@gmail.com>
+Date:   Fri May 26 20:38:58 2023 +0700
+
+    A
+
+[33mcommit f1caf80f7b9dd8c9db3d1927d75761e7fc7b8a6d[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 13:37:00 2023 +0700
+
+    Update Home.js
+    
+    Them ghi chu
+
+[33mcommit e488263700b9afeb67a3e2bc1ef1ca6ef2e2824b[m
+Author: pvd2003 <117169476+pvd2003@users.noreply.github.com>
+Date:   Sat May 27 13:23:53 2023 +0700
+
+    Tai trang front-end cua Home

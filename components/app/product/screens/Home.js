@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View, Image, Pressable, FlatList, TextInput, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, FlatList, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
+
+const API = "https://64787df3362560649a2de3bb.mockapi.io/API/products";
 
 //data
 const data = [
@@ -16,7 +19,11 @@ const data = [
 const Home = ({ navigation }) => {
 
     const [isHidden, setIsHidden] = useState(false);
-    const [isIcon, setIsIcon] = useState('../../../../media/images/find.png');
+    const [isIcon, setIsIcon] = useState("");
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [keyword, setKeyword] = useState("");
+
 
     function Show() {
         if (isHidden) {
@@ -28,21 +35,45 @@ const Home = ({ navigation }) => {
         }
     }
 
+    useEffect(() => {
+        console.log("Render success");
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        const response = await axios.get(API);
+        if (response.status === 200) {
+            setProducts(response.data);
+            setLoading(false);
+        }
+    };
+
+    const onHandleSearch = (async (value) => {
+        const response = await axios.get(`${API}?filter=${value}`);
+        if (response.status === 200) {
+            setProducts(response.data);
+        }
+    })
+
 
     const renderItem = ({ item }) => (
         <View style={styles.item}>
             <Pressable
                 onPress={() => navigation.navigate('Detail', { item })}>
                 <Image
-                    source={item.image}
+                    source={{ uri: item.Image }}
                     style={styles.image} />
                 <View style={styles.context}>
-                    <Text style={styles.name}>{item.name}</Text>
-                    <Text style={styles.price}>{item.price}</Text>
+                    <Text style={styles.name}>{item.Name}</Text>
+                    <Text style={styles.price}>{item.Price}$</Text>
                 </View>
             </Pressable>
         </View>
     );
+
+    if (loading) {
+        return <ActivityIndicator size="large" color="green" marginTop={300} />;
+    }
 
     return (
         <View style={styles.container}>
@@ -66,7 +97,7 @@ const Home = ({ navigation }) => {
             {isHidden && <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
-                    //onChangeText={(text) => setKeyword(text)}
+                    onChangeText={(text) => setKeyword(text)}
                     placeholder="Search . . ."
                 />
                 <TouchableOpacity style={styles.icon} onPress={() => onHandleSearch(keyword)}>
@@ -119,7 +150,7 @@ const Home = ({ navigation }) => {
 
             <View style={styles.body}>
                 <FlatList
-                    data={data}
+                    data={products}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     numColumns={2}
@@ -226,7 +257,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito Sans',
     },
     price: {
-        color: '#303030',
+        color: '#F51008',
         fontSize: 14,
         fontWeight: '700',
         fontFamily: 'Nunito Sans',

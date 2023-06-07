@@ -6,7 +6,7 @@ const Detail = ({route, navigation}) => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Image style={styles.image} source={route.params.item.image} />
+          <Image style={styles.image} source={{ uri: route.params.item.Image}} />
           <View style={styles.imgNavi}>
             <View style={styles.mot}></View>
             <View style={styles.hai}></View>
@@ -39,9 +39,9 @@ const Detail = ({route, navigation}) => {
         </View>{/* header */}
 
         <View style={styles.body}>
-          <Text style={styles.title}>{route.params.item.name}</Text>
+          <Text style={styles.title}>{route.params.item.Name}</Text>
           <View style={styles.priceAndQuantityContainer}>
-            <Text style={styles.price}>{route.params.item.price}</Text>
+            <Text style={styles.price}>{route.params.item.Price}$</Text>
 
             <View style={styles.quantity}>
               <View style={styles.afterCT}>
@@ -62,7 +62,7 @@ const Detail = ({route, navigation}) => {
           </View>{/* rate */}
 
           <View style={styles.description}>
-            <Text style={styles.descriptionText}>Minimal Stand is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home. </Text>
+            <Text style={styles.descriptionText}>{route.params.item.Describe}</Text>
           </View>{/* description */}
 
         </View>{/* body */}

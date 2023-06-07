@@ -80,7 +80,7 @@ const ProductNavigation = () => {
   return (
     <Stack.Navigator>
     <Stack.Screen
-      name="Home"
+      name="Homee"
       component={BottomTabs}
       options={{ headerShown: false }}
     />
