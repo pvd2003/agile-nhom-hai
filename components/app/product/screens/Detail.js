@@ -1,7 +1,21 @@
 import { StyleSheet, Text, View, Image, Button, Pressable, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 const Detail = ({route, navigation}) => {
+
+  //Hàm thêm số lượng sản phẩm
+  const [quantity, setQuantity] = useState(1);
+  //Tăng số lượng
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+  //Giảm số lượng
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -44,13 +58,13 @@ const Detail = ({route, navigation}) => {
             <Text style={styles.price}>{route.params.item.Price}$</Text>
 
             <View style={styles.quantity}>
-              <View style={styles.afterCT}>
+              <Pressable style={styles.afterCT} onPress={increaseQuantity}>
                 <Image source={require('../../../../media/images/cong.png')} />
-              </View>
-              <Text style={styles.quantityText}>01</Text>
-              <View style={styles.afterCT}>
+              </Pressable>
+              <Text style={styles.quantityText}>{quantity.toString().padStart(2, '0')}</Text>
+              <Pressable style={styles.afterCT} onPress={decreaseQuantity}>
                 <Image source={require('../../../../media/images/tru.png')} />
-              </View>
+              </Pressable>
             </View>
           </View>
 
