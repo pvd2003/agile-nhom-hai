@@ -16,23 +16,23 @@ const Tab = createBottomTabNavigator();
 const ProductNavigation = () => {
 
     const BottomTabs = () => (
-    <Tab.Navigator
-    screenOptions={({route}) => icon(route)}>
-        <Tab.Screen
-            name="Home"
-            component={Home} />
-        <Tab.Screen
-            name="Favorites"
-            component={Favorites} />
-        <Tab.Screen
-            name="Notification"
-            component={Notification} />
-        <Tab.Screen
-            name="Profile"
-            component={Profile} />
-    </Tab.Navigator>
-)
-    
+        <Tab.Navigator
+            screenOptions={({ route }) => icon(route)}>
+            <Tab.Screen
+                name="Home"
+                component={Home} />
+            <Tab.Screen
+                name="Favorites"
+                component={Favorites} />
+            <Tab.Screen
+                name="Notification"
+                component={Notification} />
+            <Tab.Screen
+                name="Profile"
+                component={Profile} />
+        </Tab.Navigator>
+    )
+
     const icon = (route) => {
         return {
             tabBarIcon: ({ focused }) => {
@@ -44,7 +44,7 @@ const ProductNavigation = () => {
                         return <Image source={require('../../../../media/images/home.png')}
                             style={{ width: 20, height: 20 }} />
                     }
-                } 
+                }
                 else if (route.name == "Favorites") {
                     if (focused) {
                         return <Image source={require('../../../../media/images/favoritesChoose.png')}
@@ -53,7 +53,7 @@ const ProductNavigation = () => {
                         return <Image source={require('../../../../media/images/favorites.png')}
                             style={{ width: 20, height: 20 }} />
                     }
-                } 
+                }
                 else if (route.name == "Notification") {
                     if (focused) {
                         return <Image source={require('../../../../media/images/notificationChoose.png')}
@@ -62,7 +62,7 @@ const ProductNavigation = () => {
                         return <Image source={require('../../../../media/images/notification.png')}
                             style={{ width: 20, height: 20 }} />
                     }
-                } 
+                }
                 else if (route.name == "Profile") {
                     if (focused) {
                         return <Image source={require('../../../../media/images/profileChoose.png')}
