@@ -1,13 +1,14 @@
 import React from 'react'
 
 import AppNavigation from './components/app/navigation/AppNavigation'
-import Detail from './components/app/product/screens/Detail'
-import Payment from './components/app/product/screens/Payment'
+import AddShopAddress from './components/app/product/screens/AddShopAddress'
 
-Payment
+
+
+
 const App = () => {
   return (
-    <Payment/>
+    <AddShopAddress/>
   )
 }
 
