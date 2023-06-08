@@ -2,49 +2,51 @@ import { StyleSheet, Text, View, TextInput, Pressable, Image } from 'react-nativ
 
 import React from 'react'
 
-const Signup = () => {
-  return (
-    <View style={styles.container}>
-    <View style={styles.header}>
-        <Image source={require('../../../../media/images/duongke.png')} />
-        <Image style={styles.anhhead} source={require('../../../../media/images/anhHead.png')} />
-        <Image source={require('../../../../media/images/duongke.png')} />
-    </View>
-    <Text style={styles.fontAgain}>WELCOME </Text>
+const Register = (props) => {
+    const {navigation} = props;
 
-
-    <View style={styles.khung}>
-        <View style={styles.marginUP}>
-        <Text style={styles.fontUP}>Name</Text>
-            <TextInput style={styles.textInput}  />
-            <Text style={styles.fontUP}>Email</Text>
-            <TextInput style={styles.textInput}  />
-
-            <Text style={styles.fontUP}>Password</Text>
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} secureTextEntry />
-                <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Image source={require('../../../../media/images/duongke.png')} />
+                <Image style={styles.anhhead} source={require('../../../../media/images/anhHead.png')} />
+                <Image source={require('../../../../media/images/duongke.png')} />
             </View>
-            <Text style={styles.fontUP}>Confirm Password</Text>
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} secureTextEntry />
-                <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
-            </View>
-            
-        </View>
+            <Text style={styles.fontAgain}>WELCOME </Text>
 
-        <Pressable style={styles.btnLogin}>
-            <Text style={styles.btnLoginLabel}>SIGN UP</Text>
-        </Pressable>
-        <View style={styles.center}>
-        <View style={styles.rowF}>
-            <Text style={styles.fontdhaa}>Already have account? </Text>
-            <Text style={styles.fontSU}>SIGN UP</Text>
-        </View>
-    </View> 
-    </View>
-    
-    {/* <View style={styles.center}>
+
+            <View style={styles.khung}>
+
+                <Text style={styles.fontUP}>Name</Text>
+                <TextInput style={styles.textInput} />
+                <Text style={styles.fontUP}>Email</Text>
+                <TextInput style={styles.textInput} />
+
+                <Text style={styles.fontUP}>Password</Text>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.textInput} secureTextEntry />
+                    <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
+                </View>
+                <Text style={styles.fontUP}>Confirm Password</Text>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.textInput} secureTextEntry />
+                    <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
+                </View>
+
+                <Pressable style={styles.btnLogin}>
+                    <Text style={styles.btnLoginLabel}>SIGN UP</Text>
+                </Pressable>
+                <View style={styles.center}>
+                    <View style={styles.rowF}>
+                        <Text style={styles.fontdhaa}>Already have account? </Text>
+                        <Text
+                            onPress={() => navigation.navigate('Login')}
+                            style={styles.fontSU}>SIGN UP</Text>
+                    </View>
+                </View>
+            </View>
+
+            {/* <View style={styles.center}>
         <Text style={styles.fontocw}>or continue with</Text>
     </View>
 
@@ -66,19 +68,15 @@ const Signup = () => {
         </View>
     </View> */}
 
-</View>
-  )
+        </View>
+    )
 }
 
-export default Signup
+export default Register
 
 const styles = StyleSheet.create({
     khung: {
-
-        
         backgroundColor: '#FFFFFF',
-    
-
     },
     anhhead: {
         marginLeft: 20,
@@ -98,7 +96,7 @@ const styles = StyleSheet.create({
         marginTop: 34.5,
         color: '#999999',
         fontFamily: 'Poppins',
-fontStyle: 'normal',
+        fontStyle: 'normal',
         fontWeight: '400',
         fontSize: 30,
         lineHeight: 72,
@@ -128,7 +126,7 @@ fontStyle: 'normal',
         marginTop: 48,
     },
     fontUP: {
-        
+
         marginLeft: 30,
         fontFamily: 'Poppins',
         fontStyle: 'normal',
@@ -159,10 +157,10 @@ fontStyle: 'normal',
         letterSpacing: 0.12,
     },
     btnLogin: {
-        marginLeft:20,
-        marginRight:20,
+        marginLeft: 20,
+        marginRight: 20,
         display: 'flex',
-        marginTop:30,
+        marginTop: 30,
         backgroundColor: '#303030',
         borderRadius: 8,
         height: 50,
@@ -200,7 +198,7 @@ fontStyle: 'normal',
 
     },
     fontFtp: {
-      marginTop:30,
+        marginTop: 30,
         fontFamily: 'Poppins',
         fontWeight: '600',
         fontSize: 18,
@@ -235,7 +233,7 @@ fontStyle: 'normal',
         alignItems: 'center',
         paddingHorizontal: 24,
         paddingVertical: 12,
-backgroundColor: '#EEF1F4',
+        backgroundColor: '#EEF1F4',
         borderRadius: 6,
         flexDirection: 'row',
     },
@@ -271,6 +269,6 @@ backgroundColor: '#EEF1F4',
         lineHeight: 19.1,
         letterSpacing: 0.12,
         color: '#303030',
-       
+
     }
 })
