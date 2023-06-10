@@ -6,8 +6,8 @@ import ProductNavigation from '../product/navigation/ProductNavigation'
 const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <UserNavigation />
-      {/* <ProductNavigation /> */}
+      {/* <UserNavigation /> */}
+      <ProductNavigation />
     </NavigationContainer>
   )
 }

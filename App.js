@@ -7,6 +7,9 @@ import Login from './components/app/user/screens/Login'
 import Boarding from './components/app/user/screens/Boarding'
 import Favorites from './components/app/product/screens/Favorites'
 import Cart from './components/app/product/screens/Cart'
+import Profile from './components/app/product/screens/Profile'
+import MyOrder from './components/app/product/screens/MyOrder'
+import ShippingAddress from './components/app/product/screens/ShippingAddress'
 
 const App = () => {
   return (
@@ -15,11 +18,12 @@ const App = () => {
     // <Boarding/>
     // <Login/>
     // <Detail/>
-    // <AppNavigation/>
-
-
+    <AppNavigation/>
+    // <Profile/>
+    // <MyOrder/>
+    // <ShippingAddress/>
     // <Favorites/>
-    <Cart/>
+    // <Cart/>
 
   )
 }
