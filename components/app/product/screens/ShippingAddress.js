@@ -1,19 +1,21 @@
-import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, Pressable,TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
 import CheckBox from '@react-native-community/checkbox'
 
-const ShippingAddress = () => {
+const ShippingAddress = ({navigation}) => {
     const [isSelected, setSelection] = useState(false);
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
                 <Image
                     source={require('../../../../media/images/back.png')}
                 />
+                </TouchableOpacity>
                 <Text style={styles.title}>Shipping address</Text>
                 <Image
-
+                
                 />
             </View>{/* header */}
             <ScrollView>

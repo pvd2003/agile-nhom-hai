@@ -2,7 +2,7 @@ import { View, Text,StyleSheet,Image,TouchableOpacity,Switch} from 'react-native
 import React from 'react'
 import { useState } from 'react'
 
-const Seting = () => {
+const Seting = ({navigation}) => {
     const [switchvalue, setswitchvalue] = useState(true)
     const [switchnew, setswitchnew] = useState(false)
     const [switchstatus, setswitchstatus] = useState(false)
@@ -18,7 +18,7 @@ const Seting = () => {
   return (
     <View style ={setingsheet.container} >
       <View style={setingsheet.first}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
        <Image style = {setingsheet.imback} source={require("../../../../media/images/back.png")}/>
        </TouchableOpacity>
        <Text style = {setingsheet.txtrating}>Setting</Text>

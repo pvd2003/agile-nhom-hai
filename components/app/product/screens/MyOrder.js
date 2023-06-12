@@ -1,13 +1,16 @@
 import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-native'
 import React from 'react'
 
-const MyOrder = () => {
+const MyOrder = ({navigation}) => {
+    
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image
-                    source={require('../../../../media/images/back.png')}
-                />
+            <Pressable
+                onPress={() => navigation.navigate('Profile')}>
+                <Image style={styles.icon} source={require('../../../../media/images/back.png')} />
+              </Pressable>
+               
                 <Text style={styles.title}>My order</Text>
                 <Image
 

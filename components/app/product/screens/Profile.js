@@ -1,7 +1,24 @@
-import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, Pressable,TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const Profile = () => {
+const Profile = (props) => {
+  const{navigation}=props
+  const Myorder =()=>{
+  navigation.navigate("myorders")
+  }
+  const Shipping =()=>{
+    navigation.navigate("shipping")
+    }
+    const Payment =()=>{
+      navigation.navigate("payment")
+      }
+      const Myreview =()=>{
+        navigation.navigate("myreview")
+        }
+        const Setting =()=>{
+          navigation.navigate("setting")
+        }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,7 +42,7 @@ const Profile = () => {
         </View>
       </View>{/*nav */}
       <View style={styles.body}>
-        <Pressable style={styles.section}>
+        <TouchableOpacity style={styles.section} onPress={Myorder}>
           <View style={styles.sectionContext}>
             <Text style={styles.function}>My orders</Text>
             <Text style={styles.context}>Already have 10 orders</Text>
@@ -33,8 +50,8 @@ const Profile = () => {
           <Image
             source={require('../../../../media/images/next.png')}
           />
-        </Pressable>
-        <Pressable style={styles.section}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={Shipping} style={styles.section}>
           <View style={styles.sectionContext}>
             <Text style={styles.function}>Shipping Addresses</Text>
             <Text style={styles.context}>03 Addresses</Text>
@@ -42,8 +59,8 @@ const Profile = () => {
           <Image
             source={require('../../../../media/images/next.png')}
           />
-        </Pressable>
-        <Pressable style={styles.section}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={Payment} style={styles.section}>
           <View style={styles.sectionContext}>
             <Text style={styles.function}>Payment Method</Text>
             <Text style={styles.context}>You have 2 cards</Text>
@@ -51,8 +68,8 @@ const Profile = () => {
           <Image
             source={require('../../../../media/images/next.png')}
           />
-        </Pressable>
-        <Pressable style={styles.section}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={Myreview} style={styles.section}>
           <View style={styles.sectionContext}>
             <Text style={styles.function}>My reviews</Text>
             <Text style={styles.context}>Reviews for 5 items</Text>
@@ -60,8 +77,8 @@ const Profile = () => {
           <Image
             source={require('../../../../media/images/next.png')}
           />
-        </Pressable>
-        <Pressable style={styles.section}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={Setting} style={styles.section}>
           <View style={styles.sectionContext}>
             <Text style={styles.function}>Setting</Text>
             <Text style={styles.context}>Notification, Password, FAQ, Contact</Text>
@@ -69,7 +86,7 @@ const Profile = () => {
           <Image
             source={require('../../../../media/images/next.png')}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>{/*body */}
       </ScrollView>
 

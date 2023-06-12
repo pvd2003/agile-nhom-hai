@@ -9,6 +9,13 @@ import Profile from '../screens/Profile';
 
 import React from 'react'
 import { Image } from 'react-native'
+import MyOrder from '../screens/MyOrder';
+import { faShippingFast } from '@fortawesome/free-solid-svg-icons';
+import ShippingAddress from '../screens/ShippingAddress';
+import AddPayment from '../screens/AddPayment';
+import Seting from '../screens/Seting';
+import Review from '../screens/Review';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,7 +72,7 @@ const ProductNavigation = () => {
                 }
                 else if (route.name == "Profile") {
                     if (focused) {
-                        return <Image source={require('../../../../media/images/profileChoose.png')}
+                        return <Image Ssource={require('../../../../media/images/profileChoose.png')}
                             style={{ width: 20, height: 20 }} />
                     } else {
                         return <Image source={require('../../../../media/images/profile.png')}
@@ -87,6 +94,31 @@ const ProductNavigation = () => {
     <Stack.Screen
       name="Detail"
       component={Detail}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="myorders"
+      component={MyOrder}
+      options={{ headerShown: false }}
+    />
+     <Stack.Screen
+      name="shipping"
+      component={ShippingAddress}
+      options={{ headerShown: false }}
+    />
+     <Stack.Screen
+      name="payment"
+      component={AddPayment}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="myreview"
+      component={Review}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="setting"
+      component={Seting}
       options={{ headerShown: false }}
     />
   </Stack.Navigator>

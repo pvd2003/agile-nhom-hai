@@ -1,12 +1,12 @@
 import { View, Text,Image,StyleSheet,Pressable,TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const AddPayment = () => {
+const AddPayment = ({navigation}) => {
   return (
     <View style = {paymentsheet.container}>
        
       <View style={paymentsheet.first}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
        <Image style = {paymentsheet.imback} source={require("../../../../media/images/back.png")}/>
        </TouchableOpacity>
        <Text style = {paymentsheet.txtrating}>Add payment method</Text>
