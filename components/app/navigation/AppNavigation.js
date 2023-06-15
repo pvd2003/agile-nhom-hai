@@ -6,10 +6,10 @@ import ProductNavigation from '../product/navigation/ProductNavigation'
 const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <UserNavigation />
-      {/* <ProductNavigation /> */}
+     
+       <ProductNavigation /> 
     </NavigationContainer>
   )
 }
 
-export default AppNavigation
+export default AppNavigation    
