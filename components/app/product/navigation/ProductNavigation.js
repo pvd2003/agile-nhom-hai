@@ -9,12 +9,6 @@ import Profile from '../screens/Profile';
 
 import React from 'react'
 import { Image } from 'react-native'
-import MyOrder from '../screens/MyOrder';
-import { faShippingFast } from '@fortawesome/free-solid-svg-icons';
-import ShippingAddress from '../screens/ShippingAddress';
-import AddPayment from '../screens/AddPayment';
-import Seting from '../screens/Seting';
-import Review from '../screens/Review';
 
 
 const Stack = createNativeStackNavigator();
@@ -84,45 +78,20 @@ const ProductNavigation = () => {
         }
     }
 
-  return (
-    <Stack.Navigator>
-    <Stack.Screen
-      name="Homee"
-      component={BottomTabs}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="Detail"
-      component={Detail}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="myorders"
-      component={MyOrder}
-      options={{ headerShown: false }}
-    />
-     <Stack.Screen
-      name="shipping"
-      component={ShippingAddress}
-      options={{ headerShown: false }}
-    />
-     <Stack.Screen
-      name="payment"
-      component={AddPayment}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="myreview"
-      component={Review}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen
-      name="setting"
-      component={Seting}
-      options={{ headerShown: false }}
-    />
-  </Stack.Navigator>
-  )
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Homee"
+                component={BottomTabs}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Detail"
+                component={Detail}
+                options={{ headerShown: false }}
+            />
+        </Stack.Navigator>
+    )
 }
 
 export default ProductNavigation

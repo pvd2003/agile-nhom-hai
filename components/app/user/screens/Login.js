@@ -1,8 +1,26 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Image } from 'react-native'
-import React from 'react'
+import {
+    StyleSheet, Text,
+    View, TextInput,
+    Pressable, Image,
+    ToastAndroid
+} from 'react-native'
+import React, { useContext, useState } from 'react'
+import { UserContext } from '../utilities/UserContext';
 
 const Login = (props) => {
     const { navigation } = props;
+    const { login } = useContext(UserContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        const result = await login(email, password);
+        if (!result) {
+            ToastAndroid.show('Đăng nhập không thành công', ToastAndroid.LONG);
+            setEmail('');
+            setPassword('');
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -21,13 +39,22 @@ const Login = (props) => {
             <View style={styles.khung}>
                 <View style={styles.inputContainer}>
                     <Text style={styles.fontUP}>Email</Text>
-                    <TextInput style={styles.textInput} />
+                    <TextInput
+                        style={styles.textInput}
+                        value={email}
+                        onChangeText={setEmail}
+                        placeholder='Username' />
                 </View>
 
                 <View style={styles.inputContainer}>
                     <Text style={styles.fontUP}>Password</Text>
                     <View style={styles.inputPass}>
-                        <TextInput style={styles.textInput} secureTextEntry />
+                        <TextInput
+                            style={styles.textInput}
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry={true}
+                            placeholder='Password' />
                         <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
                     </View>
                 </View>
@@ -35,21 +62,13 @@ const Login = (props) => {
 
 
                 <View style={styles.row}>
-                    {/* <View style={styles.row}>
-        <CheckBox
-          label={false}
-          disabled={false}
-          color={toggleCheckBox ? "#1877F2" : undefined}
-          value={toggleCheckBox}
-          onValueChange={(newValue) => setToggleCheckBox(newValue)}
-        />
-        <Text style={styles.fontRm}>Remember me</Text>
-      </View> */}
 
                     <Text style={styles.fontFtp}>Forgot Password</Text>
                 </View>
 
-                <Pressable style={styles.btnLogin}>
+                <Pressable
+                    onPress={handleLogin}
+                    style={styles.btnLogin}>
                     <Text style={styles.btnLoginLabel}>Log in</Text>
                 </Pressable>
                 <Pressable
@@ -58,29 +77,6 @@ const Login = (props) => {
                     <Text style={styles.fontSU}>SIGN UP</Text>
                 </Pressable>
             </View>
-
-            {/* <View style={styles.center}>
-                <Text style={styles.fontocw}>or continue with</Text>
-            </View>
-
-            <View style={styles.rowFG}>
-                <Pressable style={styles.btnFG}>
-                    <Image source={require('../beyeu_angile/media/images/ic_fb.png')} />
-                    <Text style={styles.fontFG}>Facebook</Text>
-                </Pressable>
-                <Pressable style={styles.btnFG}>
-                    <Image source={require('../beyeu_angile/media/images/ic_fb.png')} />
-                    <Text style={styles.fontFG}>Google</Text>
-                </Pressable>
-            </View>
-
-            <View style={styles.center}>
-                <View style={styles.rowF}>
-                    <Text style={styles.fontdhaa}>don't have an account ? </Text>
-                    <Text style={styles.fontSU}>Sign Up</Text>
-                </View>
-            </View> */}
-
         </View>
     )
 }
@@ -124,9 +120,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
     },
 
-    inputContainer:{
-        marginTop:30,
-        marginLeft:30,
+    inputContainer: {
+        marginTop: 30,
+        marginLeft: 30,
     },
 
     fontUP: {
@@ -166,13 +162,13 @@ const styles = StyleSheet.create({
         letterSpacing: 0.12,
         color: '#4E4B66',
     },
-    
+
     fontStar: {
         color: 'red',
         lineHeight: 21,
         letterSpacing: 0.12,
     },
-    
+
     fontStar: {
         color: 'red',
         lineHeight: 21,
@@ -194,7 +190,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.12,
         color: 'white',
     },
-    
+
     fontRm: {
         marginStart: 9.54,
         fontFamily: 'Poppins',

@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, Image, Button, Pressable, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { NewsContext } from '../utilities/NewsContext';
 
-const Detail = ({route, navigation}) => {
+const Detail = (props) => {
 
   //Hàm thêm số lượng sản phẩm
   const [quantity, setQuantity] = useState(1);
@@ -16,11 +17,32 @@ const Detail = ({route, navigation}) => {
     }
   };
 
+  const { navigation, route } = props;
+  const { id } = route?.params; //kiem tra 
+  const { getDetail } = useContext(NewsContext);
+  const [data, setData] = useState(null); //chi tiet 1 bai viet
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getDetail(id);
+      setData(response);
+      console.log(response);
+      // imglink = `http://172.16.65.84:9000/images/${data.image}`;
+
+    };
+    if (id) {
+      fetchData();
+    }
+    return () => { }
+  }, [id]);
+
   return (
-    <View style={styles.container}>
+    (data) ? <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Image style={styles.image} source={{ uri: route.params.item.Image}} />
+          <Image
+            style={styles.image}
+            source={{ uri: `http://192.168.1.13:3000/images/${data.image}` }} />
           <View style={styles.imgNavi}>
             <View style={styles.mot}></View>
             <View style={styles.hai}></View>
@@ -33,7 +55,7 @@ const Detail = ({route, navigation}) => {
                 onPress={() => navigation.navigate('Home')}>
                 <Image style={styles.icon} source={require('../../../../media/images/back.png')} />
               </Pressable>
-              
+
             </View>
 
             <View style={styles.colorContainer}>
@@ -53,9 +75,9 @@ const Detail = ({route, navigation}) => {
         </View>{/* header */}
 
         <View style={styles.body}>
-          <Text style={styles.title}>{route.params.item.Name}</Text>
+          <Text style={styles.title}>{data.name}</Text>
           <View style={styles.priceAndQuantityContainer}>
-            <Text style={styles.price}>{route.params.item.Price}$</Text>
+            <Text style={styles.price}>{data.price}$</Text>
 
             <View style={styles.quantity}>
               <Pressable style={styles.afterCT} onPress={increaseQuantity}>
@@ -76,7 +98,7 @@ const Detail = ({route, navigation}) => {
           </View>{/* rate */}
 
           <View style={styles.description}>
-            <Text style={styles.descriptionText}>{route.params.item.Describe}</Text>
+            <Text style={styles.descriptionText}>{data.description}</Text>
           </View>{/* description */}
 
         </View>{/* body */}
@@ -91,6 +113,7 @@ const Detail = ({route, navigation}) => {
         </Pressable>
       </View>
     </View>
+    : <View><Text>Dang tai du lieu...</Text></View>
   )
 }
 
@@ -327,9 +350,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  
 
-  
+
+
 
 
 

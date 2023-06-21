@@ -1,9 +1,30 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Image } from 'react-native'
+import {
+    StyleSheet, Text,
+    View, TextInput,
+    Pressable, Image,
+    ToastAndroid
+} from 'react-native'
 
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../utilities/UserContext';
 
 const Register = (props) => {
-    const {navigation} = props;
+    const { navigation } = props;
+    const { register } = useContext(UserContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onRegister = async () => {
+        const result = await register(email, password);
+        if (result == true) {
+            ToastAndroid.show('Register Successful', ToastAndroid.LONG);
+            navigation.navigate('Login');
+        }
+        else {
+            ToastAndroid.show('Register Failed', ToastAndroid.LONG);
+        }
+        console.log('>>>>>>>>>>>> Register result: ', result)
+    }
 
     return (
         <View style={styles.container}>
@@ -16,24 +37,26 @@ const Register = (props) => {
 
 
             <View style={styles.khung}>
-
-                <Text style={styles.fontUP}>Name</Text>
-                <TextInput style={styles.textInput} />
                 <Text style={styles.fontUP}>Email</Text>
-                <TextInput style={styles.textInput} />
+                <TextInput
+                    style={styles.textInput}
+                    placeholder='Email'
+                    value={email}
+                    onChangeText={setEmail} />
 
                 <Text style={styles.fontUP}>Password</Text>
                 <View style={styles.inputContainer}>
-                    <TextInput style={styles.textInput} secureTextEntry />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={setPassword} />
                     <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
                 </View>
-                <Text style={styles.fontUP}>Confirm Password</Text>
-                <View style={styles.inputContainer}>
-                    <TextInput style={styles.textInput} secureTextEntry />
-                    <Image style={styles.ic_eye} source={require('../../../../media/images/eye.png')} />
-                </View>
-
-                <Pressable style={styles.btnLogin}>
+                <Pressable
+                    style={styles.btnLogin}
+                    onPress={onRegister}>
                     <Text style={styles.btnLoginLabel}>SIGN UP</Text>
                 </Pressable>
                 <View style={styles.center}>
@@ -46,19 +69,8 @@ const Register = (props) => {
                 </View>
             </View>
 
-            {/* <View style={styles.center}>
+            <View style={styles.center}>
         <Text style={styles.fontocw}>or continue with</Text>
-    </View>
-
-    <View style={styles.rowFG}>
-        <Pressable style={styles.btnFG}>
-            <Image source={require('../beyeu_angile/media/images/ic_fb.png')} />
-            <Text style={styles.fontFG}>Facebook</Text>
-        </Pressable>
-        <Pressable style={styles.btnFG}>
-            <Image source={require('../beyeu_angile/media/images/ic_fb.png')} />
-            <Text style={styles.fontFG}>Google</Text>
-        </Pressable>
     </View>
 
     <View style={styles.center}>
@@ -66,7 +78,7 @@ const Register = (props) => {
             <Text style={styles.fontdhaa}>don't have an account ? </Text>
             <Text style={styles.fontSU}>Sign Up</Text>
         </View>
-    </View> */}
+    </View>
 
         </View>
     )

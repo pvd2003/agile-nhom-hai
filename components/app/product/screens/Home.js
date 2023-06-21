@@ -1,29 +1,21 @@
-import { StyleSheet, Text, View, 
-    Image, Pressable, FlatList, 
-    TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+    StyleSheet, Text, View,
+    Image, Pressable, FlatList,
+    TextInput, TouchableOpacity, ActivityIndicator
+} from 'react-native';
 
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import React, { useEffect, useState, useContext } from "react";
+import { NewsContext } from '../utilities/NewsContext';
+// import axios from 'axios';
 
-const API = "https://64787df3362560649a2de3bb.mockapi.io/API/products";
+// const API = "https://64787df3362560649a2de3bb.mockapi.io/API/products";
 
-//data
-const data = [
-    { id: '1', name: 'Black Simple Lamp', price: '$ 12.00', image: require('../../../../media/images/image1.png'), },
-    { id: '2', name: 'Minimal Stand', price: '$ 25.00', image: require('../../../../media/images/image2.png'), },
-    { id: '3', name: 'Coffee Chair', price: '$ 20.00', image: require('../../../../media/images/image3.png'), },
-    { id: '4', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
-    { id: '5', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
-    { id: '6', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
-    { id: '7', name: 'Simple Desk', price: '$ 50.00', image: require('../../../../media/images/image4.png'), },
-];
-
-const Home = ({ navigation }) => {
+const Home = (props) => {
 
     const [isHidden, setIsHidden] = useState(false);
     const [isIcon, setIsIcon] = useState("");
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    // const [products, setProducts] = useState([]);
+    // const [loading, setLoading] = useState(true);
     const [keyword, setKeyword] = useState("");
 
 
@@ -37,18 +29,18 @@ const Home = ({ navigation }) => {
         }
     }
 
-    useEffect(() => {
-        console.log("Render success");
-        fetchProducts();
-    }, []);
+    // useEffect(() => {
+    //     console.log("Render success");
+    //     fetchProducts();
+    // }, []);
 
-    const fetchProducts = async () => {
-        const response = await axios.get(API);
-        if (response.status === 200) {
-            setProducts(response.data);
-            setLoading(false);
-        }
-    };
+    // const fetchProducts = async () => {
+    //     const response = await axios.get(API);
+    //     if (response.status === 200) {
+    //         setProducts(response.data);
+    //         setLoading(false);
+    //     }
+    // };
 
     const onHandleSearch = (async (value) => {
         const response = await axios.get(`${API}?filter=${value}`);
@@ -57,24 +49,51 @@ const Home = ({ navigation }) => {
         }
     })
 
+    const { navigation } = props
+    const { getNews } = useContext(NewsContext);
+    const [data, setData] = useState([]);
 
-    const renderItem = ({ item }) => (
-        <View style={styles.item}>
-            <Pressable
-                onPress={() => navigation.navigate('Detail', { item })}>
-                <Image
-                    source={{ uri: item.Image }}
-                    style={styles.image} />
-                <View style={styles.context}>
-                    <Text style={styles.name}>{item.Name}</Text>
-                    <Text style={styles.price}>{item.Price}$</Text>
-                </View>
-            </Pressable>
-        </View>
-    );
+    useEffect(() => {
+        //tu dong chay khi component duoc render
+        //chay lan dau tien va moi khi co su thay doi state
+        const get = async () => {
+            const response = await getNews();
+            setData(response);
+        }
+        get();
+        return () => { }
+    }, []);
 
-    if (loading) {
-        return <ActivityIndicator size="large" color="green" marginTop={300} />;
+
+
+
+    const renderItem = (props) => {
+        const { item } = props;
+        const { name, price, image, _id } = item;
+        return (
+            <View style={styles.item}>
+                <Pressable
+                    onPress={() => navigation.navigate('Detail', { id: _id })}>
+                    <Image
+                        source={{ uri: `http://192.168.1.13:3000/images/${image}` }}
+                        style={styles.image} /> 
+                    <View style={styles.context}>
+                        <Text style={styles.name}>{name}</Text>
+                        <Text style={styles.price}>{price}$</Text>
+                    </View>
+                </Pressable>
+            </View>
+        )
+
+    };
+
+    const [refeshing, setRefeshing] = useState(false);
+
+    const onRefesh = async () => {
+        setRefeshing(true);
+        const response = await getNews();
+        setData(response);
+        setRefeshing(false);
     }
 
     return (
@@ -96,7 +115,8 @@ const Home = ({ navigation }) => {
                 />
             </View>
 
-            {isHidden && <View style={styles.inputWrapper}>
+            {isHidden &&
+             <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => setKeyword(text)}
@@ -105,7 +125,8 @@ const Home = ({ navigation }) => {
                 <TouchableOpacity style={styles.icon} onPress={() => onHandleSearch(keyword)}>
                     <Image source={require('../../../../media/images/find.png')} />
                 </TouchableOpacity>
-            </View>}
+            </View>
+            }
 
             <View style={styles.nav}>
                 <Pressable>
@@ -152,11 +173,13 @@ const Home = ({ navigation }) => {
 
             <View style={styles.body}>
                 <FlatList
-                    data={products}
+                    data={data}
                     renderItem={renderItem}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item) => item._id}
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
+                    refreshing={refeshing}
+                    onRefresh={onRefesh}
                 />
             </View>
         </View>
@@ -259,7 +282,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito Sans',
     },
     price: {
-        color: '#F51008',
+        color: '#303030',
         fontSize: 14,
         fontWeight: '700',
         fontFamily: 'Nunito Sans',
