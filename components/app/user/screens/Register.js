@@ -14,7 +14,28 @@ const Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const onRegister = async () => {
+    const onRegister = async (email, password) => {
+        console.log(email);
+        if (email.length < 1) {
+            ToastAndroid.show('Email không được để trống!', ToastAndroid.LONG);
+            return;
+        }
+        function validateEmail(email) {
+            var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regex.test(email);
+        }
+        if (!validateEmail(email)) {
+            ToastAndroid.show('Email sai định dạng !', ToastAndroid.LONG);
+            return;
+        }
+        if (password.length < 1) {
+            ToastAndroid.show('Mật khẩu không được để trống !', ToastAndroid.LONG);
+            return;
+        }
+        if (password.length < 5) {
+            ToastAndroid.show('Mật khẩu phải dài hơn 5 ký tự !', ToastAndroid.LONG);
+            return;
+        }
         const result = await register(email, password);
         if (result == true) {
             ToastAndroid.show('Register Successful', ToastAndroid.LONG);
@@ -56,7 +77,7 @@ const Register = (props) => {
                 </View>
                 <Pressable
                     style={styles.btnLogin}
-                    onPress={onRegister}>
+                    onPress={() => onRegister(email,password)}> 
                     <Text style={styles.btnLoginLabel}>SIGN UP</Text>
                 </Pressable>
                 <View style={styles.center}>

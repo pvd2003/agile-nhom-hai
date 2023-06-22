@@ -1,5 +1,8 @@
 import React, { createContext, useState } from 'react'
 import AxiosInstance from '../../axiosClient/AxiosInstance'
+import axios from 'axios';
+
+const API = "https://64787df3362560649a2de3bb.mockapi.io/API/products";
 
 export const NewsContext = createContext();
 
@@ -11,6 +14,7 @@ export const NewsProvider = (props) => {
     try {
       const response = await AxiosInstance().get('/product/getAll')
       return response;
+      
     } catch (error) {
       console.log('getNews Error', error)
     }

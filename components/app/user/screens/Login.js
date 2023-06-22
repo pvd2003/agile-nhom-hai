@@ -13,7 +13,23 @@ const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = async () => {
+    const handleLogin = async (email, password) => {
+        if (email.length < 1) {
+            ToastAndroid.show('Email không được để trống!', ToastAndroid.LONG);
+            return;
+        }
+        function validateEmail(email) {
+            var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return regex.test(email);
+        }
+        if (!validateEmail(email)) {
+            ToastAndroid.show('Email sai định dạng !', ToastAndroid.LONG);
+            return;
+        }
+        if (password.length < 1) {
+            ToastAndroid.show('Mật khẩu không được để trống !', ToastAndroid.LONG);
+            return;
+        }
         const result = await login(email, password);
         if (!result) {
             ToastAndroid.show('Đăng nhập không thành công', ToastAndroid.LONG);
@@ -67,7 +83,7 @@ const Login = (props) => {
                 </View>
 
                 <Pressable
-                    onPress={handleLogin}
+                    onPress={() => handleLogin(email, password)} 
                     style={styles.btnLogin}>
                     <Text style={styles.btnLoginLabel}>Log in</Text>
                 </Pressable>

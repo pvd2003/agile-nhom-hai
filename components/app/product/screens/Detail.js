@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View, Image, Button, Pressable, ScrollView } from 'react-native'
-import React, { useState, useContext, useEffect } from 'react'
-import { NewsContext } from '../utilities/NewsContext';
+import React, { useState } from 'react'
 
-const Detail = (props) => {
+const Detail = ({ route, navigation }) => {
 
   //Hàm thêm số lượng sản phẩm
   const [quantity, setQuantity] = useState(1);
@@ -17,32 +16,11 @@ const Detail = (props) => {
     }
   };
 
-  const { navigation, route } = props;
-  const { id } = route?.params; //kiem tra 
-  const { getDetail } = useContext(NewsContext);
-  const [data, setData] = useState(null); //chi tiet 1 bai viet
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getDetail(id);
-      setData(response);
-      console.log(response);
-      // imglink = `http://172.16.65.84:9000/images/${data.image}`;
-
-    };
-    if (id) {
-      fetchData();
-    }
-    return () => { }
-  }, [id]);
-
   return (
-    (data) ? <View style={styles.container}>
+    <View style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Image
-            style={styles.image}
-            source={{ uri: `http://192.168.1.13:3000/images/${data.image}` }} />
+          <Image style={styles.image} source={{ uri: route.params.item.Image }} />
           <View style={styles.imgNavi}>
             <View style={styles.mot}></View>
             <View style={styles.hai}></View>
@@ -75,9 +53,9 @@ const Detail = (props) => {
         </View>{/* header */}
 
         <View style={styles.body}>
-          <Text style={styles.title}>{data.name}</Text>
+          <Text style={styles.title}>{route.params.item.Name}</Text>
           <View style={styles.priceAndQuantityContainer}>
-            <Text style={styles.price}>{data.price}$</Text>
+            <Text style={styles.price}>{route.params.item.Price}$</Text>
 
             <View style={styles.quantity}>
               <Pressable style={styles.afterCT} onPress={increaseQuantity}>
@@ -98,7 +76,7 @@ const Detail = (props) => {
           </View>{/* rate */}
 
           <View style={styles.description}>
-            <Text style={styles.descriptionText}>{data.description}</Text>
+            <Text style={styles.descriptionText}>{route.params.item.Describe}</Text>
           </View>{/* description */}
 
         </View>{/* body */}
@@ -113,7 +91,6 @@ const Detail = (props) => {
         </Pressable>
       </View>
     </View>
-    : <View><Text>Dang tai du lieu...</Text></View>
   )
 }
 

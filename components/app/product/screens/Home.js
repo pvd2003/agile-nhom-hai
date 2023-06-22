@@ -4,18 +4,17 @@ import {
     TextInput, TouchableOpacity, ActivityIndicator
 } from 'react-native';
 
-import React, { useEffect, useState, useContext } from "react";
-import { NewsContext } from '../utilities/NewsContext';
-// import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
-// const API = "https://64787df3362560649a2de3bb.mockapi.io/API/products";
+const API = "https://64787df3362560649a2de3bb.mockapi.io/API/products";
 
-const Home = (props) => {
+const Home = ({ navigation }) => {
 
     const [isHidden, setIsHidden] = useState(false);
     const [isIcon, setIsIcon] = useState("");
-    // const [products, setProducts] = useState([]);
-    // const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [keyword, setKeyword] = useState("");
 
 
@@ -29,18 +28,18 @@ const Home = (props) => {
         }
     }
 
-    // useEffect(() => {
-    //     console.log("Render success");
-    //     fetchProducts();
-    // }, []);
+    useEffect(() => {
+        console.log("Render success");
+        fetchProducts();
+    }, []);
 
-    // const fetchProducts = async () => {
-    //     const response = await axios.get(API);
-    //     if (response.status === 200) {
-    //         setProducts(response.data);
-    //         setLoading(false);
-    //     }
-    // };
+    const fetchProducts = async () => {
+        const response = await axios.get(API);
+        if (response.status === 200) {
+            setProducts(response.data);
+            setLoading(false);
+        }
+    };
 
     const onHandleSearch = (async (value) => {
         const response = await axios.get(`${API}?filter=${value}`);
@@ -49,51 +48,24 @@ const Home = (props) => {
         }
     })
 
-    const { navigation } = props
-    const { getNews } = useContext(NewsContext);
-    const [data, setData] = useState([]);
 
-    useEffect(() => {
-        //tu dong chay khi component duoc render
-        //chay lan dau tien va moi khi co su thay doi state
-        const get = async () => {
-            const response = await getNews();
-            setData(response);
-        }
-        get();
-        return () => { }
-    }, []);
+    const renderItem = ({ item }) => (
+        <View style={styles.item}>
+            <Pressable
+                onPress={() => navigation.navigate('Detail', { item })}>
+                <Image
+                    source={{ uri: item.Image }}
+                    style={styles.image} />
+                <View style={styles.context}>
+                    <Text style={styles.name}>{item.Name}</Text>
+                    <Text style={styles.price}>{item.Price}$</Text>
+                </View>
+            </Pressable>
+        </View>
+    );
 
-
-
-
-    const renderItem = (props) => {
-        const { item } = props;
-        const { name, price, image, _id } = item;
-        return (
-            <View style={styles.item}>
-                <Pressable
-                    onPress={() => navigation.navigate('Detail', { id: _id })}>
-                    <Image
-                        source={{ uri: `http://192.168.1.13:3000/images/${image}` }}
-                        style={styles.image} /> 
-                    <View style={styles.context}>
-                        <Text style={styles.name}>{name}</Text>
-                        <Text style={styles.price}>{price}$</Text>
-                    </View>
-                </Pressable>
-            </View>
-        )
-
-    };
-
-    const [refeshing, setRefeshing] = useState(false);
-
-    const onRefesh = async () => {
-        setRefeshing(true);
-        const response = await getNews();
-        setData(response);
-        setRefeshing(false);
+    if (loading) {
+        return <ActivityIndicator size="large" color="green" marginTop={300} />;
     }
 
     return (
@@ -115,8 +87,7 @@ const Home = (props) => {
                 />
             </View>
 
-            {isHidden &&
-             <View style={styles.inputWrapper}>
+            {isHidden && <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text) => setKeyword(text)}
@@ -125,8 +96,7 @@ const Home = (props) => {
                 <TouchableOpacity style={styles.icon} onPress={() => onHandleSearch(keyword)}>
                     <Image source={require('../../../../media/images/find.png')} />
                 </TouchableOpacity>
-            </View>
-            }
+            </View>}
 
             <View style={styles.nav}>
                 <Pressable>
@@ -173,13 +143,11 @@ const Home = (props) => {
 
             <View style={styles.body}>
                 <FlatList
-                    data={data}
+                    data={products}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item._id}
+                    keyExtractor={item => item.id}
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
-                    refreshing={refeshing}
-                    onRefresh={onRefesh}
                 />
             </View>
         </View>
@@ -282,7 +250,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito Sans',
     },
     price: {
-        color: '#303030',
+        color: '#F51008',
         fontSize: 14,
         fontWeight: '700',
         fontFamily: 'Nunito Sans',

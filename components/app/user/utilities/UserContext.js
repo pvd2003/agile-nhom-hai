@@ -15,7 +15,7 @@ export const UserProvider = (props) => {
                 password: password
             }
             const response = await AxiosInstance().get('/user/login', body)
-            console.log('Login responese: ', response)
+            console.log('Login response: ', response)
             setIsLoggedIn(true);
             return true;
         } catch (error) {
@@ -31,7 +31,7 @@ export const UserProvider = (props) => {
                 password: password
             }
             const response = await AxiosInstance().post('/user/signup', body)
-            console.log('Register responese: ', response)
+            console.log('Register response: ', response)
             return true;
         } catch (error) {
             console.log('Register error', error)
